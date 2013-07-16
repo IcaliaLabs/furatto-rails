@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["kurenn@icalialabs.com"]
   gem.description   = %q{Integrates the Furatto CSS Framework to the Rails assets Pipeline}
   gem.summary       = %q{Furatto CSS Framework for Rails 3.1 Asset Pipeline}
-  gem.homepage      = "http://github.com/IcaliaLabs/furatto-rails"
+  gem.homepage      = "https://github.com/IcaliaLabs/furatto-rails"
 
   gem.rubyforge_project = "furatto-rails"
 
