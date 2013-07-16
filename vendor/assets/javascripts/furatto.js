@@ -1,0 +1,15 @@
+//= require dropdown
+//= require jpanel
+//= require jquery.avgrund
+//= require jquery.dropkick-1.0.0
+//= require jquery.icheck
+//= require jquery.tagsinput
+//= require jquery.toolbar
+//= require legacy
+//= require picker
+//= require picker.date
+//= require picker.time
+//= require rainbow-custom.min
+//= require responsive-tables
+//= require responsiveslides
+//= require tooltip

@@ -1,0 +1,56 @@
+/*------------------------------------*\
+    $GRID
+\*------------------------------------*/
+/**
+ * Grid definition based on the bootstrap grid. 
+ * http://twitter.github.io/bootstrap/scaffolding.html#gridSystem
+ * 
+ * Designed and built @kurenn based
+ */
+
+
+// Fixed (940px)
+@include grid-core($gridColumnWidth, $gridGutterWidth);
+
+// Fluid (940px)
+@include grid-fluid($fluidGridColumnWidth, $fluidGridGutterWidth);
+
+// Reset utility classes due to specificity
+[class*="span"].hide,
+.row-fluid [class*="span"].hide {
+  display: none;
+}
+
+[class*="span"].pull-right,
+.row-fluid [class*="span"].pull-right {
+  float: right;
+}
+
+//Adds a background to the columns for demo purposes
+.grid-demo {
+  margin-bottom: 10px;
+
+  [class*="span"] {
+    background: $light-gray;
+    @include border-radius(3px);
+    text-align: center;
+    line-height: $base-line-height;
+  }
+}
+
+.nested-grid-demo {
+  background: $light-gray;
+  [class*="span"] {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .row-fluid {
+    .row-fluid {
+      [class*="span"] {
+        background: darken($light-gray, 15%);
+        @include border-radius(3px);
+      }
+    }
+  }
+}

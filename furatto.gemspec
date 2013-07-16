@@ -1,0 +1,21 @@
+# -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'furatto/version'
+
+Gem::Specification.new do |gem|
+  gem.name          = "furatto"
+  gem.version       = Furatto::VERSION
+  gem.authors       = ["Abraham Kuri Vargas"]
+  gem.email         = ["kurenn@icalialabs.com"]
+  gem.description   = %q{Integrates the Furatto CSS Framework to the Rails assets Pipeline}
+  gem.summary       = %q{Furatto CSS Framework for Rails 3.1 Asset Pipeline}
+  gem.homepage      = "http://github.com/IcaliaLabs/furatto-rails"
+
+  gem.rubyforge_project = "furatto-rails"
+
+  gem.files         = `git ls-files`.split($/)
+  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.require_paths = ["lib"]
+end
