@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Integrates the Furatto CSS Framework to the Rails assets Pipeline}
   gem.summary       = %q{Furatto CSS Framework for Rails 3.1 Asset Pipeline}
   gem.homepage      = "https://github.com/IcaliaLabs/furatto-rails"
+  gem.license       = 'GPL'
 
   gem.rubyforge_project = "furatto-rails"
 
