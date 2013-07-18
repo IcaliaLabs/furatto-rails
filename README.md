@@ -1,29 +1,77 @@
-# Furatto
+# Furatto for Rails 3.1 Asset Pipeline
+Furatto is a flat, fast and powerful front-end framework for rapid web development.
 
-TODO: Write a gem description
+The furatto gem integrates the Furatto CSS framework for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
 
-## Installation
+## Installing Gem
 
-Add this line to your application's Gemfile:
+**Because furatto uses [Compass](http://compass-style.org/reference/compass/css3/), you need to add the compass-rails gem into the assets group from your Gemfile.**
 
-    gem 'furatto'
+```ruby
+group :assets do
+	gem 'compass-rails'
+end
+```
 
-And then execute:
+After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:
 
-    $ bundle
+```ruby
+gem 'furatto'
+```
 
-Or install it yourself as:
+or you can install from the latest build:
 
-    $ gem install furatto
+```ruby
+gem 'furatto', git: 'git@github.com:IcaliaLabs/furatto-rails.git'
+```
 
-## Usage
+Install the gem using the bundle command:
 
-TODO: Write usage instructions here
+```console
+$ bundle
+```
 
-## Contributing
+## Add furatto to the asset pipeline
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Add to your `app/assets/stylesheets/application.css`
+
+		*= require furatto
+
+Add to your `app/assets/javascripts/application.js`
+
+		//= require furatto
+
+## Contributors & Patches & Forks
+
+- Abraham Kuri Vargas ([@kurenn](http://twitter.com/kurenn))
+
+## Furatto author
+- Abraham Kuri Vargas ([@kurenn](http://twitter.com/kurenn))
+
+
+## Credits
+Abraham Kuri - kurenn@icalialabs.com
+
+[Add Me On Twitter](http://twitter.com/kurenn "Follow me")
+
+[Add Me On Linkedin](http://www.linkedin.com/pub/abraham-kuri/26/a21/b41 "Add Me On Linkedin")
+
+[Add Me On Facebook](https://www.facebook.com/kurenn "Add Me On Facebook")
+
+
+## Score me
+<img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
+
+You can +K my influence in Ruby on Rails on @klout
+
+http://klout.com/#/kurenn
+
+
+## License
+Copyright (c) 2011 Abraham Kuri Vargas
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/gpl.html.
