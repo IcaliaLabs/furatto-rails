@@ -9,19 +9,12 @@
 
 p {
   margin: 0 0 $base-line-height / 2;
-  color: #777;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
 }
 
 /* Emphasis & miscelaneous */
 /* ----------------------- */
-
-small { 
-  font-size: 85%; 
-}
-
-strong { 
-  font-weight: bold; 
-}
 
 em { 
   font-style: italic; 
@@ -30,7 +23,7 @@ em {
 //Utility classes
 
 .muted {
-  color: $light-gray;
+  color: $muted-color;
 }
 
 .text-warning {
@@ -65,11 +58,10 @@ em {
 //--------------------------------
 
 h1,h2,h3,h4,h5,h6 {
-  margin: $base-line-height 0;
+  margin: 0 0 10px 0;
   font-family: inherit;
   font-weight: 500;
   line-height: $base-line-height;
-  color: $headings-color;
   text-rendering: optimizelegibility; // Fix the character spacing for headings
 
   small {
@@ -80,7 +72,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .light {
-  font-weight: 200;
+  font-weight: 300;
+  color: $light-color;
 }
 
 /* Headers definition */
@@ -90,8 +83,8 @@ h1, h2, h3 {
   line-height: $base-line-height * 2;
 }
 
-h5, h6 {
-  text-transform: uppercase;
+h4 {
+  line-height: $base-line-height + 10;
 }
 
 h1 { 
@@ -132,6 +125,7 @@ ol ol,
 ol ul {
   margin-bottom: 0;
 }
+
 li {
   line-height: $base-line-height;
 }
@@ -148,58 +142,39 @@ ul.inline,
 ol.inline {
   margin-left: 0;
   list-style: none;
-  > li {
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+   li {
     display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
+    padding-left: 8px;
+    padding-right: 8px;
 
-//Color Lists
-.color-list {
-  margin-left: 0;
-  list-style: none;
-  > li {
-    display: inline-block;
-    height: $color-list-item-height;
-    width: $color-list-item-width;
-    background: #222;
-    cursor: pointer;
+    a.btn {
+      color: #FFF;
 
-    &.red {
-      background: #ec7063;
+      &:hover {
+        text-decoration: none;
+      }
     }
 
-    &.green {
-      background: #1abc9c;
-    }
+    a { 
+      color: $link-color;
 
-    &.blue {
-      background: #3498db;
-    }
+      &.active {
+        background: #efefef;
+        color: $muted-color;
+        padding: 10px;
+        @include border-radius(3px);
 
-    &.aero {
-      background: #9cc2cb;
-    }
+        &:hover {
+          text-decoration: none;
+        }
+      }
 
-    &.grey {
-      background: #95a5a6;
-    }
-
-    &.orange {
-      background: #f39c12;
-    }
-
-    &.yellow {
-      background: #f1c40f;
-    }
-
-    &.pink {
-      background: #af7ac5;
-    }
-
-    &.purple {
-      background: #8677a7;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -228,39 +203,22 @@ dd {
   }
 }
 
-.inline {
-  display: inline-block;
-}
-
-//Color states
-.info {
-  color: $dark-blue;
-}
-
-.success {
-  color: $dark-green;
-}
-
-.warning {
-  color: $dark-orange;
-}
-
-.error {
-  color: $dark-red;
-}
-
-
 //Inline code
 .code {
   padding: 2px 4px;
-  color: #d14;
+  color: $code-color;
   white-space: nowrap;
-  background-color: #f7f7f9;
-  border: 1px solid #e1e1e8;
+  background-color: $code-bg;
+  font-weight: normal;
   font-size: $base-font-size;
   @include border-radius(3px);
 }
 
 i.nomargin {
   margin-right: 0 !important;
+}
+
+//Uppercase
+.text-uppercase {
+  text-transform: uppercase;
 }

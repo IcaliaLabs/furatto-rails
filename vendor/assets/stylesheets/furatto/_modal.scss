@@ -4,100 +4,362 @@
 /**
  * Basic modal structural styling. 
  * 
- * Designed and built @kurenn based on http://labs.voronianski.com/jquery.avgrund.js/
+ * Designed and built @kurenn based on http://labs.voronianski.com/jquery.modal.js/
  */
 
-/* html and body styling */
-/*--------------------*/
-html, body {
-	height: 100%;
-	overflow: auto;
-}
+/* General styles for the modal */
 
-/* Popin window style */
-/*--------------------*/
-.avgrund-popin {
-	position: absolute;
-	background: $white;
-	padding: 10px;
-	overflow: hidden;
-	visibility: hidden;
-	opacity: 0;
-	filter: alpha(opacity=0);
+/* 
+Styles for the html/body for special modal where we want 3d effects
+Note that we need a container wrapping all content on the page for the 
+perspective effects (not including the modals and the overlay).
+*/
+
+
+.modal {
+	position: fixed;
 	top: 50%;
 	left: 50%;
-	z-index: 1000;
-  @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, .5));
+	width: 50%;
+	max-width: $modal-max-width;
+	min-width: $modal-min-width;
+	height: auto;
+	z-index: 2000;
+	visibility: hidden;
+  @include backface-visibility();
+  @include transform(translateX(-50%) translateY(-50%));
 }
 
-.avgrund-overlay {
-	background: #000;
-	opacity: .5;
-	filter: alpha(opacity=50);
-	width: 100%;
-  height: 100%;
+.modal-show {
+	visibility: visible;
+}
+
+.modal-overlay {
 	position: fixed;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
 	top: 0;
 	left: 0;
-	z-index: 101;
-	visibility: hidden;
+	z-index: 1040;
+	opacity: 0;
+	background: rgba(0,0,0,0.8);
+  @include transition(all 0.3s);
 }
 
-body.avgrund-ready,
-.avgrund-ready .avgrund-popin,
-.avgrund-ready .avgrund-overlay {
-  @include transition(0.3s all ease-out);
-}
-
-body.avgrund-active {
-	overflow: hidden;
-}
-
-.avgrund-active .avgrund-popin {
-	visibility: visible;
+.modal-show-overlay {
 	opacity: 1;
-	filter: alpha(opacity=100);
-  @include scale(1.1);
-}
-
-.avgrund-active .avgrund-overlay {
 	visibility: visible;
-	opacity: .5;
-	filter: alpha(opacity=50);
-	height: 20000px;
 }
 
-/* Optional close button styles */
-/*--------------------*/
-.avgrund-close {
-	display: block;
-	color: #555;
-	font-size: 13px;
-	text-decoration: none;
-	text-transform: uppercase;
-	position: absolute;
-	top: 6px;
-	right: 10px;
+/* Content styles */
+.modal-content {
+	color: rgba(#222, 0.8);
+	background: #f0f0f0;
+	position: relative;
+  @include border-radius(3px);
+	margin: 0 auto;
+  color: $white;
 }
 
-/* Modal header and footer styling */
-/*--------------------*/
-.modal-header {
-  border-bottom: 1px solid #CCC;
-  margin-bottom: 10px;
-
-  .header {
-    margin: 10px 0px;
-    text-align: center;
-  }
+.modal-content-primary {
+	background: $dashboard-primary-bg-color;
 }
 
-.modal-footer {
-  position: absolute;
-  bottom: 5px;
-  right: 15px;
+.modal-content-danger {
+	background: $dashboard-danger-bg-color;
+}
 
-  .btn + .btn {
-    margin-right: 6px;
-  }
+.modal-content-info {
+  background: $dashboard-info-bg-color;
+}
+
+.modal-content-funky {
+  background: $dashboard-funky-bg-color;
+}
+
+.modal-content-warning {
+  background: $dashboard-warning-bg-color;
+}
+
+.modal-content-success {
+  background: $dashboard-success-bg-color;
+}
+
+.modal-content-inverse {
+  background: $dashboard-inverse-bg-color;
+}
+
+.modal-content .modal-header {
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	font-size: 2.4em;
+	font-weight: 300;
+	opacity: 0.8;
+	background: rgba(0,0,0,0.1);
+  @include border-radius(3px 3px 0 0);
+}
+
+.modal-content > div {
+	padding: 15px 40px 30px;
+	margin: 0;
+	font-weight: 300;
+	font-size: 1.15em;
+}
+
+.modal-content > div p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.modal-content > div ul {
+	margin: 0;
+	padding: 0 0 30px 20px;
+}
+
+.modal-content > div ul li {
+	padding: 5px 0;
+}
+
+/* Individual modal styles with animations/transitions */
+
+/* Effect 1: Fade in and scale up */
+.modal-effect-1 .modal-content {
+  @include transform(scale(0.7));
+	opacity: 0;
+  @include transition(all 0.3s);
+}
+
+.modal-show.modal-effect-1 .modal-content {
+  @include transform(scale(1));
+	opacity: 1;
+}
+
+/* Effect 2: Slide from the right */
+.modal-effect-2 .modal-content {
+  @include transform(translateX(20%));
+	opacity: 0;
+  @include transition(all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9));
+}
+
+.modal-show.modal-effect-2 .modal-content {
+  @include transform(translateX(0));
+	opacity: 1;
+}
+
+/* Effect 3: Slide from the bottom */
+.modal-effect-3 .modal-content {
+  @include transform(translateY(20%));
+	opacity: 0;
+  @include transition(all 0.3s);
+}
+
+.modal-show.modal-effect-3 .modal-content {
+  @include transform(translateY(0));
+	opacity: 1;
+}
+
+/* Effect 4: Newspaper */
+.modal-effect-4 .modal-content {
+  @include transform(scale(0) rotate(720deg));
+	opacity: 0;
+}
+
+.modal-show.modal-effect-4 ~ .modal-overlay,
+.modal-effect-4 .modal-content {
+  @include transition(all 0.5s);
+}
+
+.modal-show.modal-effect-4 .modal-content {
+  @include transform(scale(1) rotate(0deg));
+	opacity: 1;
+}
+
+/* Effect 5: fall */
+.modal-effect-5.modal-modal {
+  @include perspective();
+}
+
+.modal-effect-5 .modal-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+  @include transform(translateZ(600px) rotateX(20deg));
+	opacity: 0;
+}
+
+.modal-show.modal-effect-5 .modal-content {
+  @include transition(all 0.3s ease-in);
+  @include transform(translateZ(0px) rotatex(0deg));
+	opacity: 1;
+}
+
+/* Effect 6: side fall */
+.modal-effect-6.modal-modal {
+  @include perspective();
+}
+
+.modal-effect-6 .modal-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+  @include transform(translate(30%) translateZ(600px) rotate(10deg));
+	opacity: 0;
+}
+
+.modal-show.modal-effect-6 .modal-content {
+  @include transition(all 0.3s ease-in);
+  @include transform(translate(0%) translateZ(0) rotate(0deg));
+	opacity: 1;
+}
+
+/* Effect 7:  slide and stick to top */
+.modal-effect-7{
+	top: 0;
+  @include transform(translateX(-50%));
+}
+
+.modal-effect-7 .modal-content {
+	-webkit-transform: translateY(-200%);
+	-moz-transform: translateY(-200%);
+	-ms-transform: translateY(-200%);
+	transform: translateY(-200%);
+  @include transform(translateY(-200%));
+  @include transition(all 0.3s);
+	opacity: 0;
+}
+
+.modal-show.modal-effect-7 .modal-content {
+  @include transform(translateY(0%));
+  @include border-radius(0 0 3px 3px);
+	border-radius: 0 0 3px 3px;
+	opacity: 1;
+}
+
+/* Effect 8: 3D flip horizontal */
+.modal-effect-8.modal-modal {
+  @include perspective();
+}
+
+.modal-effect-8 .modal-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+  @include transform(rotateY(-70deg));
+  @include transition(all 0.3s);
+	opacity: 0;
+}
+
+.modal-show.modal-effect-8 .modal-content {
+  @include transform(rotateY(0deg));
+	opacity: 1;
+}
+
+/* Effect 9: 3D flip vertical */
+.modal-effect-9.modal-modal {
+  @include perspective();
+}
+
+.modal-effect-9 .modal-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+  @include transform(rotateX(-70deg));
+  @include transition(all 0.3s);
+	opacity: 0;
+}
+
+.modal-show.modal-effect-9 .modal-content {
+  @include transform(rotate(0deg));
+	opacity: 1;
+}
+
+/* Effect 10: 3D sign */
+.modal-effect-10.modal-modal {
+  @include perspective();
+}
+
+.modal-effect-10 .modal-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+  @include transform(rotateX(-60deg));
+	-webkit-transform-origin: 50% 0;
+	-moz-transform-origin: 50% 0;
+	transform-origin: 50% 0;
+	opacity: 0;
+  @include transition(all 0.3s);
+}
+
+.modal-show.modal-effect-10 .modal-content {
+  @include transform(rotateX(0deg));
+	opacity: 1;
+}
+
+/* Effect 11: Super scaled */
+.modal-effect-11 .modal-content {
+  @include transform(scale(2));
+	opacity: 0;
+  @include transition(all 0.3s);
+}
+
+.modal-show.modal-effect-11 .modal-content {
+  @include transform(scale(1));
+	opacity: 1;
+}
+
+/* Effect 12:  Just me */
+.modal-effect-12 .modal-content {
+  @include transform(scale(0.8));
+	opacity: 0;
+  @include transition(all 0.3s);
+}
+
+.modal-show.modal-effect-12 ~ .modal-overlay {
+	background: #e74c3c;
+} 
+
+.modal-effect-12 .modal-content h3,
+.modal-effect-12 .modal-content {
+	background: transparent;
+}
+
+.modal-show.modal-effect-12 .modal-content {
+  @include transform(scale(1));
+	opacity: 1;
+}
+
+/* Effect 13: 3D slit */
+.modal-effect-13.modal-modal {
+  @include perspective();
+}
+
+.modal-effect-13 .modal-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+  @include transform(translateZ(-3000px) rotateY(90deg)); 
+	opacity: 0;
+}
+
+.modal-show.modal-effect-13 .modal-content {
+	-webkit-animation: slit .7s forwards ease-out;
+	-moz-animation: slit .7s forwards ease-out;
+	animation: slit .7s forwards ease-out;
+}
+
+@-webkit-keyframes slit {
+	50% { -webkit-transform: translateZ(-250px) rotateY(89deg); opacity: .5; -webkit-animation-timing-function: ease-out;}
+	100% { -webkit-transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+@-moz-keyframes slit {
+	50% { -moz-transform: translateZ(-250px) rotateY(89deg); opacity: .5; -moz-animation-timing-function: ease-out;}
+	100% { -moz-transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+@keyframes slit {
+	50% { transform: translateZ(-250px) rotateY(89deg); opacity: 1; animation-timing-function: ease-in;}
+	100% { transform: translateZ(0) rotateY(0deg); opacity: 1; }
 }

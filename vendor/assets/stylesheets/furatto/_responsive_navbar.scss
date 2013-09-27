@@ -12,19 +12,21 @@
 
 @media (max-width: $nav-bar-collapse-width) {
 
+  .panels {
+    display: block;
+  }
+
+  .panel-content {
+    padding-top: 0 !important;
+  }
+
   /*Unfix top navbar*/
   /*Remove any padding from the body */
   
-  body {
-    padding: 0px;
-  }
-
   .navbar {
     .menu-trigger {
       float: left;
       display: block;
-      /*width: 18px;*/
-      /*padding: 7px 10px;*/
       margin-left: 5px;
       margin-right: 5px;
       color: $navbar-text;
@@ -32,6 +34,8 @@
       line-height: $base-line-height;
       padding-top: $base-line-height - 5;
       margin-bottom: 7px; /*compensate the navbar height*/
+
+      @include touch-callout;
     }
   }
 
@@ -51,17 +55,9 @@
     margin-top: $base-line-height;
   }
 
-  .navbar .container {
-    width: auto;
-    padding: 0;
-  }
-
   // Account for brand name
   .navbar .nav .brand {
     display: block;
-    /*padding-left: 10px;*/
-    /*padding-right: 10px;*/
-    /*margin: 0 0 0 -5px;*/
   }
 
   // COLLAPSIBLE NAVBAR
@@ -74,6 +70,9 @@
   .nav-collapse .nav {
     float: none;
     margin: 0 0 ($base-line-height / 2);
+    display: none;
+  }
+  .nav-collapse .search-navbar-form {
     display: none;
   }
   .nav-collapse .nav > li {
@@ -115,16 +114,6 @@
     background-color: $navbar-bg-color;
   }
 
-  .navbar-inverse .nav-collapse .nav > li > a,
-  .navbar-inverse .nav-collapse .dropdown-menu a {
-    /*color: @navbarInverseLinkColor;*/
-  }
-  .navbar-inverse .nav-collapse .nav > li > a:hover,
-  .navbar-inverse .nav-collapse .nav > li > a:focus,
-  .navbar-inverse .nav-collapse .dropdown-menu a:hover,
-  .navbar-inverse .nav-collapse .dropdown-menu a:focus {
-    /*background-color: @navbarInverseBackground;*/
-  }
   // Buttons in the navbar
   .nav-collapse.in .btn-group {
     margin-top: 5px;
@@ -143,8 +132,6 @@
     padding: 0;
     background-color: transparent;
     border: none;
-    /*.border-radius(0);*/
-    /*.box-shadow(none);*/
   }
   .nav-collapse .open > .dropdown-menu { 
     display: block; 
@@ -171,6 +158,30 @@
     padding-right: 10px;
   }
   
+}
+
+.navbar-inverse {
+  [data-toggle="panel"] {
+    color: $navbar-inverse-text;
+  }
+}
+
+.panel-content, .panel-left, .panel-content {
+  position: absolute;
+}
+
+.panel-content {
+  z-index: 2;
+  overflow: auto;
+
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden; /* Chrome and Safari */
+  -moz-backface-visibility:hidden; /* Firefox */
+  -ms-backface-visibility:hidden; /* Internet Explorer 10+ */
+}
+
+.panels {
+  position: absolute;
 }
 
 @media (min-width: $nav-bar-collapse-width-desktop) {

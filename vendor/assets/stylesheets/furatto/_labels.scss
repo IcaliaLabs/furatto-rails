@@ -8,7 +8,7 @@
  */
 
 .label, .badge {
-  display: inline-block;
+  @include inline-block;
   padding: 2px 4px;
   font-size: $base-font-size * .846;
   font-weight: bold;
@@ -16,8 +16,9 @@
   color: #FFF;
   vertical-align: baseline;
   white-space: nowrap;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.20);
+  /*text-shadow: 0 -1px 0 rgba(0,0,0,.20);*/
   background: $gray;
+  @include border-radius(2px);
 }
 
 //Badges border radius

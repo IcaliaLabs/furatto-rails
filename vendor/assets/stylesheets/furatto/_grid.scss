@@ -9,48 +9,52 @@
  */
 
 
-// Fixed (940px)
-@include grid-core($gridColumnWidth, $gridGutterWidth);
-
-// Fluid (940px)
-@include grid-fluid($fluidGridColumnWidth, $fluidGridGutterWidth);
-
 // Reset utility classes due to specificity
-[class*="span"].hide,
-.row-fluid [class*="span"].hide {
+[class*="col-"].hide,
+.row [class*="col-"].hide {
   display: none;
 }
 
-[class*="span"].pull-right,
-.row-fluid [class*="span"].pull-right {
+[class*="col-"].pull-right,
+.row [class*="col-"].pull-right {
   float: right;
 }
 
-//Adds a background to the columns for demo purposes
-.grid-demo {
-  margin-bottom: 10px;
+.row {
+  text-rendering: optimizespeed;
+  @include clearfix();
 
-  [class*="span"] {
-    background: $light-gray;
-    @include border-radius(3px);
-    text-align: center;
-    line-height: $base-line-height;
+  [class*="col-"]:first-child {
+    margin-left: 0px;
   }
 }
 
-.nested-grid-demo {
-  background: $light-gray;
-  [class*="span"] {
-    padding-bottom: 10px;
-    text-align: center;
+.row + .row {
+  margin-top: 2px;
+}
+
+//Borders and paddings are applied inside the div element
+//This prevents the columns to stack by a border or padding
+[class*="col-"] {
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+  float: left;
+  padding: 8px;
+}
+
+@include build-column-grids;
+
+@media (max-width: 767px) {
+  .row > [class *= "col-"] {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 2px;
   }
 
-  .row-fluid {
-    .row-fluid {
-      [class*="span"] {
-        background: darken($light-gray, 15%);
-        @include border-radius(3px);
-      }
-    }
+  .container-center {
+    width: 95%;
   }
 }

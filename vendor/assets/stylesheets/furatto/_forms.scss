@@ -37,7 +37,8 @@ input[type="color"],
 .uneditable-input {
   display: inline-block;
   height: $base-line-height;
-  padding: 4px 6px;
+  padding-left: 8px;
+  height: 30px;
   margin-bottom: $base-line-height / 2;
   font-size: $base-font-size;
   line-height: $base-line-height;
@@ -82,27 +83,27 @@ input[type="color"],
 
 //Input sizes
 .input-mini { 
-  width: 60px; 
+  width: 16.667%; 
 }
 
 .input-small { 
-  width: 90px; 
+  width: 33.34%; 
 }
 
 .input-medium { 
-  width: 150px; 
+  width: 50%; 
 }
 
 .input-large { 
-  width: 210px; 
+  width: 66.668%; 
 }
 
 .input-xlarge {
-  width: 270px; 
+  width: 83.335%; 
 }
 
-.input-xxlarge { 
-  width: 350px; 
+.input-block {
+  width: 100%;
 }
 
 /* Inline Forms */
@@ -111,10 +112,16 @@ input[type="color"],
 .horizontal-form {
   input,
   textarea,
-  select {
+  select,
+  .form-fields,
+  .checkbox-fields {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
+  }
+
+  .form-fields {
+    margin-top: 4px;
   }
 
   label {
@@ -130,7 +137,7 @@ input[type="color"],
 /* Horizontal form */
 /* --------------- */
 .horizontal-form {
-  .furatto-controls {
+  .form-fields {
     display: block;
     margin-bottom: 10px;
 
@@ -141,52 +148,29 @@ input[type="color"],
     }
   }
 
-  .furatto-actions {
+  .form-actions {
     margin-left: 184px;
-  }
-}
-
-/* Login Form */
-/* ------------ */
-.login-form {
-  width: 30%;
-  text-align: center;
-
-  input[type="text"],
-  input[type="password"],
-  input[type="email"] {
-    display: block;
-    width: 96%;
-    height: 35px;
-    padding: 0px 0px 0px 10px;
-    height: 42px;
-    background: #fcfcfc;
-  }
-
-  .furatto-login-icon {
-    margin-bottom: 20px;
-  }
-
-  .login-header {
-    font-size: $base-font-size + 10;
-    margin: 0;
-    color: $dark-gray;
   }
 }
 
 /* Centered forms */
 /* -------------- */
 .centered-form {
-  margin: 0 auto;
+  @include center-block;
 }
 
 /* Level up the label on for checkboxes */
 /* ------------------------------------ */
-label.checkbox {
+label.checkbox-label {
+  display: inline-block;
   position: relative;
   top: -4px;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+label.radiobutton-label {
+  @extend .checkbox-label;
 }
 
 label {
@@ -207,27 +191,12 @@ textarea[disabled] {
 
 /* Input states */
 /* ------------ */
-.info {
-  textarea,
-  input[type="text"],
-  input[type="password"],
-  input[type="datetime"],
-  input[type="datetime-local"],
-  input[type="date"],
-  input[type="month"],
-  input[type="time"],
-  input[type="week"],
-  input[type="number"],
-  input[type="email"],
-  input[type="url"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="color"] {
-    color: $dark-blue;
-    border: 1px solid $dark-blue;
+.form-fields-success{
+
+  .form-fields {
+    color: $dark-green;
   }
-}
-.success{
+
   textarea,
   input[type="text"],
   input[type="password"],
@@ -247,7 +216,10 @@ textarea[disabled] {
     border: 1px solid $dark-green;
   }
 }
-.warning{
+.form-fields-warning{
+  .form-fields {
+    color: $dark-orange;
+  }
   textarea,
   input[type="text"],
   input[type="password"],
@@ -267,7 +239,11 @@ textarea[disabled] {
     border: 1px solid $dark-orange;
   }
 }
-.error{
+.form-fields-error{
+  .form-fields {
+    color: $dark-red;
+  }
+  
    textarea,
   input[type="text"],
   input[type="password"],
@@ -288,3 +264,44 @@ textarea[disabled] {
   }
 }
 
+/* Form controls */
+/* ------------- */
+
+.form-fields {
+  margin: 8px 0;
+
+  .help-hint {
+    display: inline-block;
+  }
+
+
+  label {
+    font-weight: bold;
+  }
+}
+
+.checkbox-fields {
+  vertical-align: middle;
+  margin: 8px 0 15px 0;
+
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .horizontal-form {
+    .form-fields {
+      label {
+        display: block;
+        text-align: left;
+      }
+    }
+
+    .form-actions {
+      margin-left: 0;
+    }
+  }
+}

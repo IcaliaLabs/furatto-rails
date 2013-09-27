@@ -8,6 +8,7 @@
 @import "compass/css3/box-sizing";
 @import "compass/css3/transform";
 @import "compass/css3/box-shadow";
+@import "compass/css3/images";
 
 //Variables
 @import "furatto/variables";
@@ -36,34 +37,15 @@
 //Navbar
 @import 'furatto/navbar';
 
-//Vertical navbar
-@import 'furatto/vrt_navbar';
-
 //Forms
 @import 'furatto/forms';
 
 //Tables
 @import 'furatto/tables';
-@import 'furatto/_responsive_tables';
-
-//Grid
-@import 'furatto/grid';
-@import 'furatto/responsive-1200px-min';
-@import 'furatto/responsive-767px-max';
-@import 'furatto/responsive-768px-979px';
-
-//Responsive navbar
-@import 'furatto/responsive_navbar';
-@import 'furatto/left_navbar';
+@import 'furatto/responsive_tables';
 
 //Images
 @import 'furatto/images';
-
-//Selects
-@import 'furatto/select';
-
-//Check box/Radio buttons
-@import 'furatto/icheck/all';
 
 //Footer
 @import 'furatto/footer';
@@ -74,19 +56,12 @@
 //Base
 @import 'furatto/typography';
 
-//Pagination
-@import 'furatto/pagination';
-
 //Tooltips
 @import 'furatto/tooltips';
-
-//Tags
-@import 'furatto/tags';
 
 //DatePicker
 @import 'furatto/date_picker';
 @import 'furatto/date_picker.date';
-@import 'furatto/date_picker.time';
 
 //Toolbar
 @import 'furatto/toolbars';
@@ -94,8 +69,18 @@
 //Modal
 @import 'furatto/modal';
 
-//Slider
-@import 'furatto/_responsiveslides';
-
 //Drowpdowns
 @import 'furatto/dropdown';
+
+//Panel Menu
+@import 'furatto/panel';
+
+//Grid
+@import 'furatto/grid';
+@import 'furatto/responsive_navbar';
+
+@import 'furatto/dashboard';
+@import 'furatto/responsive_utilities';
+
+//Slider
+@import 'furatto/responsiveslides';
