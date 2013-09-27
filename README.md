@@ -1,4 +1,4 @@
-# Furatto for Rails 3.1 Asset Pipeline
+# Furatto for Rails Asset Pipeline
 Furatto is a flat, fast and powerful front-end framework for rapid web development.
 
 The furatto gem integrates the Furatto CSS framework for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
@@ -34,12 +34,49 @@ $ bundle
 ## Add furatto to the asset pipeline
 
 Add to your `app/assets/stylesheets/application.css`
-
+		
+		*= require normalize
 		*= require furatto
 
 Add to your `app/assets/javascripts/application.js`
 
 		//= require furatto
+		
+## Want Font Awesome support?
+
+Add to your `app/assets/stylesheets/application.css`
+		
+		*= require font-awesome
+		
+## Using Rails 4?
+
+The configuration for Rails 4 is pretty similar, although the `compass-rails` gem is not fully support, you have to add it with a patch.
+
+```ruby
+group :assets do
+	gem "compass-rails", github: "milgner/compass-rails", ref: "1749c06f15dc4b058427e7969810457213647fb8"
+end
+```
+
+After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:
+
+```ruby
+gem 'furatto'
+```
+
+or you can install from the latest build:
+
+```ruby
+gem 'furatto', git: 'git@github.com:IcaliaLabs/furatto-rails.git'
+```
+
+Install the gem using the bundle command:
+
+```console
+$ bundle
+```
+
+**After doing the steps above, you just include the furatto files as shown on the Rails 3 example.**
 
 ## Contributors & Patches & Forks
 
