@@ -53,7 +53,7 @@ Add to your `app/assets/stylesheets/application.css`
 The configuration for Rails 4 is pretty similar, although the `compass-rails` gem is not fully support, you have to add it with a patch.
 
 ```ruby
-gem "compass-rails", github: "milgner/compass-rails", ref: "1749c06f15dc4b058427e7969810457213647fb8"
+gem 'compass-rails', '~> 2.0.alpha.0'
 ```
 
 After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:
