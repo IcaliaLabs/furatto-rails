@@ -8,6 +8,13 @@ window.Furatto = {
   version: '1.0.0'
 };
 
+$('.alert .close').each(function() {
+  return $(this).click(function(e) {
+    e.preventDefault();
+    return $(this).parent().fadeOut();
+  });
+});
+
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 (function($, window) {
