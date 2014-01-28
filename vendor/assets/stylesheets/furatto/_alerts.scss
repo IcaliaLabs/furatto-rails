@@ -1,0 +1,130 @@
+//Alerts
+
+//
+//@variables
+//
+
+//General settings
+$alert-padding: px-to-rems(9) px-to-rems(40) px-to-rems(9) px-to-rems(16) !default;
+$alert-margin-bottom: px-to-rems(20) !default;
+$alert-font-size: px-to-rems(13) !default;
+$alert-font-weight: normal !default;
+$alert-default-background: #e67e22 !default;
+
+//Close settings
+$alert-close-font-size: px-to-rems(16) !default;
+$alert-close-opacity: 0.3 !default;
+$alert-close-hover-opacity: 0.5 !default;
+$alert-close-padding: px-to-rems(5) !default;
+$alert-close-color: #333 !default;
+
+//Variations
+$alert-radius: px-to-rems(3) !default;
+$alert-round: px-to-rems(1000) !default;
+
+//Alert styles
+$alert-border-width: px-to-rems(1) !default;
+$alert-border-style: solid !default;
+
+//Background variations
+$alert-primary-background: #3498db !default;
+$alert-success-background: #2ecc71 !default;
+$alert-danger-background: #e74c3c !default;
+
+//
+//@mixin
+// We use this mixin as to describe the alerts base
+//
+
+@mixin alert-base {
+  display: block;
+  padding: $alert-padding;
+  margin-bottom: $alert-margin-bottom;
+  font-size: $alert-font-size;
+  font-weight: $alert-font-weight;
+  position: relative;
+
+  &.radius {
+    @include border-radius($alert-radius);
+  }
+}
+
+
+//
+//@mixin
+// We use this to create the different styles of alerts
+// $background-color - The color for the alert background. Default: $alert-default-background
+//
+
+@mixin alert-style($background-color: $alert-default-background) {
+  background: lighten($background-color, 25%); 
+  color: darken($background-color, 10%);
+  border: $alert-border-width $alert-border-style lighten($background-color, 20%);
+
+  .close {
+    color: darken($background-color, 15%);
+  }
+}
+
+//
+//@mixin
+// We use this to create the close link of alerts
+//
+
+@mixin alert-close {
+  line-height: 0;
+  padding: $alert-close-padding;
+  border: none;
+  background: none;
+  font-size: $alert-close-font-size;
+  cursor: pointer;
+  color: $alert-close-color;
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  margin-top: -($alert-font-size / 2);
+  text-decoration: none;
+  @include opacity($alert-close-opacity);
+
+  &:hover, &:focus {
+    @include opacity($alert-close-hover-opacity);
+  }
+}
+
+
+//
+//@mixin
+// We use this to create custom alerts
+// $background-color - The color for the alert background. Default: $alert-default-background
+// $include-radius - Wheter or not to include radius variant. Default: true
+// $include-round - Wheter or not to include rounded variant. Default: true
+//
+
+@mixin alert($background-color: $alert-default-background, $include-radius: true, $include-round: true) {
+  @include alert-base;
+  @include alert-style($background-color);
+
+  .close { @include alert-close; }
+  @if $include-radius {
+    &.radius { @include border-radius($alert-radius); }
+  }
+
+  @if $include-round {
+  &.round { @include border-radius($alert-round) }
+  }
+}
+
+//Alert description
+.alert {
+  @include alert-base;
+  @include alert-style;
+
+  .close { @include alert-close; }
+
+  &.round { @include border-radius($alert-round) }
+  &.radius { @include border-radius($alert-radius); }
+
+  &.primary{ @include alert-style($alert-primary-background); }
+  &.success { @include alert-style($alert-success-background); }
+  &.danger { @include alert-style($alert-danger-background); }
+}

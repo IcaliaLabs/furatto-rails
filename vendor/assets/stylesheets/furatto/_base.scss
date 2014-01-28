@@ -1,0 +1,144 @@
+//Base
+
+//
+//@variables
+//
+
+$body-background-color: #FFF !default;
+$base-font-color: #333 !default;
+$base-link-color: #0088cc !default;
+$base-font-weight: normal !default;
+$base-font-size: px-to-rems(16) !default;
+$base-font-family: 'Open Sans', 'Helvetica Neue' !default;
+$base-line-height: 1 !default;
+
+//Text variations
+$muted-text-color: #666666 !default;
+$warning-text-color: #d35400 !default;
+$error-text-color: #c0392b !default;
+$success-text-color: #27ae60 !default;
+
+//Reset settings
+*, 
+*:after, 
+*:before { 
+  @include box-sizing(border-box);
+}
+
+html, body, .off-screen {
+  -webkit-overflow-scrolling: touch;
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+html, body {
+  font-size: $base-font-size;
+  font-weight: $base-font-weight;
+  @include hyphens(auto);
+}
+
+abbr,
+acronym,
+blockquote,
+code,
+dir,
+kbd,
+listing,
+plaintext,
+q,
+samp,
+tt,
+var,
+xmp {
+	@include hyphens(none);
+}
+
+body {
+  background: $body-background-color;
+  color: $base-font-color;
+  padding: 0;
+  margin: 0;
+  font-family: $base-font-family;
+  line-height: $base-line-height;
+}
+
+img,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+object {
+  height: 100%;
+}
+
+
+//Helpful classes
+.clearfix {
+  @extend %clearfix;
+}
+
+.hidden {
+  display: none;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+//Text color variations 
+.text-muted {
+  color: $muted-text-color;
+}
+
+.text-warning {
+  color: $warning-text-color;
+}
+
+.text-error {
+  color: $error-text-color;
+}
+
+.text-success {
+  color: $success-text-color;
+}
+
+//Text alignment
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+//Text variations
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+//Content alignment
+.vertical-align {
+  //The parent container must have height
+  @extend %vertical-alignment;
+}

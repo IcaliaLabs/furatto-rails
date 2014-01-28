@@ -1,0 +1,92 @@
+//Tooltips
+
+//
+//@variables
+//
+
+$tooltip-font-size: 0.68571429rem !default;
+$tooltip-z-index: 1030 !default;
+$tooltip-padding: 0.25714286rem !default;
+$tooltip-inner-padding: 0.45714286rem !default;
+$tooltip-in-opacity: 1 !default;
+$tooltip-color: #2E323E !default;
+$tooltip-font-color: #FFF !default;
+$tooltip-alignment: center !default;
+$tooltip-radius: 0rem !default;
+$tooltip-border-width: 0.64285714rem !default;
+
+//Tooltip definition
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: $tooltip-z-index;
+  display: block;
+  padding: $tooltip-padding;
+  font-size: $tooltip-font-size;
+
+  &.in {
+    @include opacity($tooltip-in-opacity);
+  }
+
+  //Tooltip positions
+  &.top {
+    margin-top: -3px;
+    .tooltip-arrow {
+      border-top-color: $tooltip-color;
+      border-width: $tooltip-border-width $tooltip-border-width 0;
+      bottom: 0;
+      margin-left: -$tooltip-border-width;
+      left: 50%;
+    }
+  }
+
+  &.right {
+    margin-left: 3px;
+    .tooltip-arrow {
+      border-right-color: $tooltip-color;
+      border-width: $tooltip-border-width $tooltip-border-width $tooltip-border-width 0;
+      margin-top: -$tooltip-border-width;
+      left: -3px;
+      top: 50%;
+    }
+  }
+
+  &.bottom {
+    margin-top: 3px;
+    .tooltip-arrow {
+      border-bottom-color: $tooltip-color;
+      border-width: 0 $tooltip-border-width $tooltip-border-width;
+      margin-left: -$tooltip-border-width;
+      top: -1px;
+      left: 50%;
+    }
+  }
+
+  &.left {
+    margin-left: -3px;
+    .tooltip-arrow {
+      border-left-color: $tooltip-color;
+      border-width: $tooltip-border-width 0px $tooltip-border-width $tooltip-border-width;
+      margin-top: -$tooltip-border-width;
+      right: -3px;
+      top: 50%;
+    }
+  }
+}
+
+//Tooltip inner definition
+.tooltip-inner {
+  background-color: $tooltip-color;
+  padding: $tooltip-inner-padding;
+  text-align: $tooltip-alignment;
+  color: $tooltip-font-color;
+  @include border-radius($tooltip-radius);
+}
+

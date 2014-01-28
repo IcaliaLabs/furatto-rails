@@ -1,0 +1,85 @@
+//Button groups
+
+//
+//@variables
+//
+
+$sm-device-width: 480px !default;
+
+//Media queries
+$button-group-small-media-query: "#{$media-display} and (max-width: #{$sm-device-width})" !default;
+
+//Variations
+$button-radius: px-to-rems(3) !default;
+$button-pill-radius: px-to-rems(1000) !default;
+
+.button-group {
+  list-style: none;
+  margin: 0; 
+  @extend %clearfix;
+
+
+
+  li {
+    float: left;
+
+    .button,
+    button {
+      [class*="icon-"] {
+        margin-right: 0px;
+      }
+    }
+
+    &:first-child {
+      .button,
+      button {
+        border-right-width: 0;
+      }
+    }
+
+    &:last-child {
+      .button,
+      button {
+        border-left-width: 0;
+      }
+    }
+  }
+
+  &.pill {
+    li:first-child .button {
+      @include border-top-left-radius($button-pill-radius);
+      @include border-bottom-left-radius($button-pill-radius);
+    }
+
+    li:last-child .button {
+      @include border-top-right-radius($button-pill-radius);
+      @include border-bottom-right-radius($button-pill-radius);
+    }
+  }
+
+  &.radius {
+    li:first-child .button {
+      @include border-top-left-radius($button-radius);
+      @include border-bottom-left-radius($button-radius);
+    }
+
+    li:last-child .button {
+      @include border-top-right-radius($button-radius);
+      @include border-bottom-right-radius($button-radius);
+    }
+  }
+}
+
+@media #{$button-group-small-media-query} {
+  .button-group {
+    li {
+      float: none;
+      display: block;
+
+      .button,
+      button {
+        display: block;
+      }
+    }
+  }
+}

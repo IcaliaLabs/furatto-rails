@@ -1,0 +1,125 @@
+//Nav
+
+@import "compass/css3";
+
+//
+//@variables
+//
+
+//Navigation settings
+$navigation-style-type: none !default;
+$navigation-list-position: inside !default;
+$navigation-padding: 1rem 0 !default;
+$navigation-link-color: #777 !default;
+
+//Navigation list items
+$navigation-list-item-font-size: 0.9rem !default;
+$navigation-list-item-margin-bottom: 0.1 !default;
+$navigation-list-item-active-color: #08C !default;
+$navigation-list-link-hover-color: $navigation-list-item-active-color !default;
+$navigation-list-link-hover-text-decoration: none !default;
+$navigation-list-link-padding: 0.333rem 0 !default;
+
+//Navigation list header
+$navigation-header-text-transform: uppercase !default;
+$navigation-header-padding: 0.333rem 0 !default;
+$navigation-header-color: #333 !default;
+$navigation-header-font-size: 0.85714286rem !default;
+
+//Navigation divider
+$navigation-divider-border-width: 1px !default;
+$navigation-divider-border-color: #EFEFEF !default;
+$navigation-divider-margin: 8px 0 !default;
+
+//Navigation variations
+$navigation-inline-margin-bottom: 0.55rem !default;
+$navigation-inline-active-background: #1abc9c !default;
+$navigation-inline-active-radius: 0.14285714rem !default;
+$navigation-inline-active-color: #FFF !default;
+$navigation-inline-active-padding: 0.21428571rem !default;
+$navigation-inline-link-color: #999 !default;
+$navigation-inline-link-hover: #08C !default;
+
+.navigation {
+  margin: 0;
+  display: block;
+  list-style-type: $navigation-style-type;
+  list-style-position: $navigation-list-position;
+  padding: $navigation-padding;
+
+  li {
+    font-size: $navigation-list-item-font-size;
+    margin-bottom: $navigation-list-item-margin-bottom;
+
+    &.active,
+    &.active a {
+      color: $navigation-list-item-active-color;
+      cursor: text;
+    }
+
+    &.header {
+      text-transform: $navigation-header-text-transform;
+      padding: $navigation-header-padding;
+      color: $navigation-header-color;
+      font-size: $navigation-header-font-size;
+    }
+
+    &.divider {
+      border-bottom: $navigation-divider-border-width solid $navigation-divider-border-color;
+      margin: $navigation-divider-margin;
+      height: 0;
+    }
+    
+    a {
+      display: block;
+      padding: $navigation-list-link-padding;
+      color: $navigation-link-color;
+
+      &:hover,
+      &:focus {
+        color: $navigation-list-link-hover-color;
+        text-decoration: $navigation-list-link-hover-text-decoration;
+      }
+    }
+  }
+
+  &.inline {
+    overflow: hidden;
+    margin-bottom: $navigation-inline-margin-bottom;
+
+    li {
+      float: left;
+      margin-left:$navigation-inline-list-item-margin-left;
+
+      &.divider {
+        display: none;
+      }
+
+      &.active,
+      &.active > a {
+        background: $navigation-inline-active-background;
+        @include border-radius($navigation-inline-active-radius); 
+        color: $navigation-inline-active-color;
+        padding: $navigation-inline-active-padding;
+
+        &:hover,
+        &:focus {
+          color: $navigation-inline-active-color;
+        }
+      }
+
+      &, & a {
+        color: $navigation-inline-link-color;
+      }
+
+      a {
+        &:hover,
+        &:focus {
+          color: $navigation-inline-link-hover;
+        }
+      }
+
+    }
+  }
+
+}

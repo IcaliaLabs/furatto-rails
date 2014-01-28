@@ -1,0 +1,320 @@
+/*------------------------------------*\
+    $NAVBAR
+\*------------------------------------*/
+/**
+ * Basic navbar structural styling based on bootstrap. 
+ * http://twitter.github.io/bootstrap/components.html#navbar
+ * 
+ * Designed and built @kurenn  
+ */
+
+//
+//@variables
+//
+
+//Navigation general settings
+$navigation-bar-background: #191818 !default;
+$navigation-bar-height: 45px !default;
+$navigation-margin-bottom: 10px !default;
+$navigation-bar-color: #FFF !default;
+$navigation-bar-font-weight: 300 !default;
+$navigation-font-size: px-to-rems(13) !default;
+$navigation-fixed-z-index: 1030 !default;
+
+//Brand section
+$navigation-bar-brand-section-font-size: px-to-rems(18) !default;
+
+//Navigation links settings
+$navigation-bar-link-color: #FFF !default;
+$navigation-bar-link-hover-color: #999 !default;
+$navigation-bar-link-hover-decoration: none !default;
+
+//Buttons settings
+$navigation-bar-button-font-size: px-to-rems(12) !default;
+$navigation-bar-button-height: $navigation-bar-height - 10 !default;
+$navigation-bar-button-margin-left: px-to-rems(8) !default;
+$navigation-bar-button-margin-right: px-to-rems(8) !default;
+$navigation-bar-menu-color: #FFF !default;
+
+//Icons settings
+$navigation-bar-icon-margin-right: 5px !default;
+
+//Text settings
+$navigation-bar-text-color: #CCC !default;
+
+//Active items
+$navigation-bar-active-color: #FFF !default;
+$navigation-bar-active-hover-color: darken($navigation-bar-active-color, 5%) !default;
+
+//Menu toggle
+$navigation-bar-menu-toggle-text-transform: uppercase !default;
+
+//Dropdown
+$navigation-bar-arrow-color: $navigation-bar-link-color !default;
+$navigation-bar-arrow-hover-color: $navigation-bar-link-hover-color !default;
+$navigation-bar-dropdown-z-index: $navigation-fixed-z-index + 10 !default;
+$navigation-bar-dropdown-header-text-transform: uppercase !default;
+$navigation-bar-dropdown-header-padding: px-to-rems(9) px-to-rems(17) px-to-rems(2) !default;
+$navigation-bar-dropdown-header-color: #777 !default;
+$navigation-bar-dropdown-header-font-weight: bold !default;
+$navigation-bar-dropdown-header-font-size: px-to-rems(8) !default;
+$navigation-bar-dropdown-divider-height: px-to-rems(1) !default; 
+
+//Offscreen
+$off-screen-toggle-padding-left: px-to-rems(34) !default;
+
+//Media
+$media-collapse-width: 768px !default;
+$navigation-bar-collapse-query: "#{$media-display} and (max-width: #{$media-collapse-width})" !default;
+$navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-collapse-width})" !default;
+
+.navigation-bar {
+  background: $navigation-bar-background;
+  height: $navigation-bar-height;
+  margin-bottom: $navigation-margin-bottom;
+  overflow: hidden;
+  font-weight: $navigation-bar-font-weight;
+
+  a {
+    @include touch-callout;
+  }
+  &.opened {
+    height: auto;
+
+    .brand-section .menu-toggle a {
+      color: $navigation-bar-link-hover-color;
+    } 
+
+    ul:not(.brand-section) {
+      width: 100%;
+
+      li.with-dropdown {
+        .dropdown {
+          position: static;
+        }
+      }
+
+      li {
+        width: 100%;
+        display: block;
+
+        .button {
+          width: 96%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        &.divider {
+          height: auto;
+          border-bottom: 1px solid scale-color($navigation-bar-background, $lightness: 13%);
+        }
+      }
+    }
+
+  }
+
+  // Plain text in topbar
+  .navigation-bar-text {
+    margin: 0;
+    line-height: $navigation-bar-height;
+    color: $navigation-bar-text-color;
+    display: inline-block;
+    font-size: $navigation-font-size;
+    padding: 0 $navigation-bar-height / 3;
+  }
+
+  .button {
+    font-size: $navigation-bar-button-font-size;
+    height: $navigation-bar-button-height;
+    line-height: $navigation-bar-button-height;
+    margin-left: $navigation-bar-button-margin-left;
+    margin-right: $navigation-bar-button-margin-right;
+
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    margin-right: $navigation-bar-icon-margin-right;
+  }
+
+  ul {
+    margin: 0;
+    list-style: none;
+    font-size: $navigation-font-size;
+    float: left;
+    width: auto;
+
+    li {
+      float: left;
+
+      &.active > a {
+        color: $navigation-bar-active-color;
+        background: darken($navigation-bar-background, 10%);
+
+        &:hover {
+          color: $navigation-bar-active-hover-color;
+        }
+      }
+
+      a {
+        display: block;
+        padding: 0 $navigation-bar-height / 3;
+        height: $navigation-bar-height;
+        line-height: $navigation-bar-height;
+        color: $navigation-bar-link-color;
+
+        &:hover { 
+          text-decoration: $navigation-bar-link-hover-decoration; 
+          color: $navigation-bar-link-hover-color;
+        }
+      }
+
+      &.divider {
+        height: $navigation-bar-height; 
+        border-left: 1px solid scale-color($navigation-bar-background, $lightness: 13%);
+      }
+    }
+
+    li.with-dropdown {
+      position: relative;
+      & > a {
+        padding-right: $navigation-bar-height - 10;
+      } 
+
+      &.opened {
+        .dropdown {
+          display: block;
+        }
+      }
+
+      .dropdown {
+        display: none; //hides the first time
+        position: absolute;
+        float: left;
+        top: auto;
+        left: 0;
+        z-index: $navigation-bar-dropdown-z-index;
+        min-width: 100%;
+
+        li {
+          width: 100%;
+          height: auto;
+          background: $navigation-bar-background;
+          white-space: nowrap;
+
+          &.dropdown-header {
+            text-transform: $navigation-bar-dropdown-header-text-transform;
+            padding: $navigation-bar-dropdown-header-padding;
+            margin-bottom: 0;
+            color: $navigation-bar-dropdown-header-color;
+            font-weight: $navigation-bar-dropdown-header-font-weight;
+            font-size: $navigation-bar-dropdown-header-font-size;
+          }
+
+          &.divider {
+            height: $navigation-bar-dropdown-divider-height; 
+            border-top: 1px solid scale-color($navigation-bar-background, $lightness: 13%);
+          }
+        }
+      }
+    }
+
+  }
+
+  ul.pull-right {
+    float: right;
+  }
+
+  .brand-section {
+    font-size: $navigation-bar-brand-section-font-size; 
+    position: relative;
+    .brand-name {
+      a {
+        display: block !important;
+      }
+    }
+    li {
+      padding: 0;
+
+      &.menu-toggle {
+        display: none;
+        text-transform: $navigation-bar-menu-toggle-text-transform;
+        font-size: $navigation-font-size;
+        position: relative;
+        text-indent: -48px;
+        right: 20px;
+        width: 34px;
+
+        a:after {
+          content: '';
+          width: 16px;
+          height: 0;
+          position: absolute;
+          right: 0;
+          top: 6px;
+          @include box-shadow(0 10px 0 1px $navigation-bar-menu-color,
+                              0 16px 0 1px $navigation-bar-menu-color,
+                              0 22px 0 1px $navigation-bar-menu-color);
+        }
+      }
+    }
+  }
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $navigation-fixed-z-index;
+  }
+
+}
+
+@media #{$navigation-bar-uncollapse-query} {
+  .navigation-bar { overflow: visible; }
+}
+
+//iPad fix
+@media only screen and (orientation: portrait) {
+  .navigation-bar { overflow: hidden; }
+}
+
+@media #{$navigation-bar-collapse-query} {
+  .off-screen {
+    .navigation-bar {
+      .brand-section {
+        .brand-name {
+          a {
+            &:before {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .navigation-bar {
+    .brand-section {
+      width: 100%;
+      font-size: $navigation-bar-brand-section-font-size - 0.15; 
+
+      .brand-name a {
+        padding-left: $off-screen-toggle-padding-left;
+      }
+      li {
+
+        &.menu-toggle {
+          display: block;
+          float: right;
+
+          &.hidden {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

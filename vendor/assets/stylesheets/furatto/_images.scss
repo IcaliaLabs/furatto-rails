@@ -1,0 +1,119 @@
+//Images
+
+//
+//@variables
+//
+
+//Images variations
+$img-radius: 0.3rem !default;
+$img-round: 50rem !default;
+
+//Image general settings
+$img-polaroid-padding: 0.28571429rem !default;
+$img-polaroid-background: #FFF !default;
+$img-polaroid-border-width: 0.07142857rem !default;
+$img-polaroid-border-style: solid !default;
+$img-polaroid-border-color: rgba(#000, 0.2) !default;
+$img-display: inline-block !default;
+$img-frame-margin: 5px !default;
+
+//Experimental
+$include-img-experimental: true !default;
+$include-img-flexible-ratios: true !default;
+
+//
+//@mixin
+//
+@mixin img-responsive($display: $img-display) {
+  max-width: 100%;
+  height: auto;
+  display: $display;
+}
+
+//General img styling
+//Deprecated on IE9+
+img {
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+
+  //Images responsive styling
+  &.responsive {
+    @include img-responsive;
+  }
+
+  //Circular images
+  &.circular {
+    @include border-radius($img-round);
+  }
+
+  //Well images
+  &.radius {
+    @include border-radius($img-radius);
+  }
+
+  //Images with borders
+  &.polaroid {
+    padding: $img-polaroid-padding;
+    border: $img-polaroid-border-width $img-polaroid-border-style $img-polaroid-border-color;
+    background: $img-polaroid-background;
+  }
+
+}
+
+//iOS fix for rounded and polaroid images
+.img-frame {
+  display: $img-display;
+  border: $img-polaroid-border-width $img-polaroid-border-style $img-polaroid-border-color;
+
+  img {
+    margin: $img-frame-margin;
+  }
+
+  &.circular {
+    img {
+      @extend .circular;
+    }
+  }
+}
+
+//Experimental
+// Kudos to Nicolas Gallagher
+@if($include-img-experimental) {
+  .cover-image {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto 1em;
+    max-height: 300px;
+    max-width: 100%;
+
+    @if($include-img-flexible-ratios == false) {
+      padding-bottom: 50%;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      width:100%;
+    }
+
+    @if($include-img-flexible-ratios) {
+      &.ratio-2by1:before {
+        padding-bottom: 50%;
+      }
+      &.ratio-3by1:before {
+        padding-bottom: 33.33%;
+      }
+      &.ratio-4by1:before {
+        padding-bottom: 25%;
+      }
+      &.ratio-4by3:before {
+        padding-bottom: 75%;
+      }
+    }
+
+  }
+}

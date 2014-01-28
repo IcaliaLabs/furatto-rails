@@ -1,0 +1,199 @@
+//Toolbars
+
+@import 'functions';
+
+//
+//@variables
+//
+
+$toolbar-background-color: #232323 !default;
+$toolbar-border-radius: 0px !default;
+$toolbar-item-height: 34px !default;
+$toolbar-item-line-height: $toolbar-item-height !default;
+$toolbar-item-width: 44px !default;
+$toolbar-item-color: #FFF !default;
+$toolbar-arrow-border-width: 7px !default;
+
+
+//Toolbar variations
+$include-toolbar-variations: false !default;
+$toolbar-primary-background-color: #3498db !default;
+$toolbar-danger-background-color: #e74c3c !default;
+$toolbar-warning-background-color: #f39c12 !default;
+
+//Toolbar positions
+$include-toolbar-top-position: true !default;
+$include-toolbar-bottom-position: true !default;
+$include-toolbar-left-position: true !default;
+$include-toolbar-right-position: true !default;
+
+.tool-container {
+	background-color: $toolbar-background-color;
+	position: absolute;				
+  @include border-radius($toolbar-border-radius);
+
+  &.tool-top,
+  &.tool-bottom {
+    height: $toolbar-item-height;
+  }
+
+  @if($include-toolbar-variations) {
+    &.primary {
+      background: $toolbar-primary-background-color;
+    }
+    &.danger {
+      background: $toolbar-danger-background-color;
+    }
+    &.warning {
+      background: $toolbar-warning-background-color;
+    }
+  }
+}
+
+.tool-items {
+	height: 100%;	
+
+  a {
+    color: $toolbar-item-color;
+  }
+}
+
+.tool-top .tool-item, .tool-bottom .tool-item {
+	float: left;
+}
+
+.tool-left .tool-item, .tool-right .tool-item {
+	height: $toolbar-item-height;
+}
+
+
+.tool-item {
+	height: 100%;
+	display: block;				
+	width: $toolbar-item-width;
+	text-align: center;
+
+  &:hover { text-decoration: none;}
+
+  i {
+    line-height: $toolbar-item-line-height;
+  }
+}
+
+.tool-item.selected, .tool-item:hover  {
+	background: darken($toolbar-background-color, 5%);
+
+  @if($include-toolbar-variations) {
+    &.primary {
+      background: darken($toolbar-primary-background-color, 5%);
+    }
+
+    &.danger {
+      background: darken($toolbar-danger-background-color, 5%);
+    }
+
+    &.warning {
+      background: darken($toolbar-warning-background-color, 5%);
+    }
+  }
+}
+
+.tool-container .arrow {
+	width:0;
+	height:0;
+	position: absolute;	
+	border-width: $toolbar-arrow-border-width;
+	border-style: solid;
+}
+
+@if ($include-toolbar-top-position) {
+  .tool-container.tool-top .arrow {
+    border-color: $toolbar-bg-color transparent transparent; 
+    left: 50%;  
+    bottom: calculate-toolbar-arrow-position($toolbar-arrow-border-width);
+    margin-left: -1 * $toolbar-arrow-border-width;
+
+    @if($include-toolbar-variations) {
+      &.primary {
+        border-color: $toolbar-primary-background-color transparent transparent; 
+      }
+
+      &.danger {
+        border-color: $toolbar-danger-background-color transparent transparent; 
+      }
+
+      &.warning {
+        border-color: $toolbar-warning-background-color transparent transparent; 
+      }
+    }
+  }
+}
+
+@if ($include-toolbar-bottom-position) {
+  .tool-container.tool-bottom .arrow {
+    border-color: transparent transparent $toolbar-background-color; 
+    left: 50%;  
+    top: calculate-toolbar-arrow-position($toolbar-arrow-border-width);
+    margin-left: -1 * $toolbar-arrow-border-width;
+
+    @if($include-toolbar-variations) {
+      &.primary {
+        border-color: transparent transparent $toolbar-primary-background-color; 
+      }
+
+      &.danger {
+        border-color: transparent transparent $toolbar-danger-background-color; 
+      }
+
+      &.warning {
+        border-color: transparent transparent $toolbar-warning-background-color; 
+      }
+    }
+  }
+}
+
+@if ($include-toolbar-left-position) {
+  .tool-container.tool-left .arrow {
+    border-color: transparent transparent transparent $toolbar-background-color;
+    top: 50%;
+    right: calculate-toolbar-arrow-position($toolbar-arrow-border-width);
+    margin-top: -1 * $toolbar-arrow-border-width;
+
+    @if($include-toolbar-variations) {
+      &.primary {
+        border-color: transparent transparent transparent $toolbar-primary-background-color;
+      }
+
+      &.danger {
+        border-color: transparent transparent transparent $toolbar-danger-background-color;
+      }
+
+      &.warning {
+        border-color: transparent transparent transparent $toolbar-warning-background-color;
+      }
+    }
+  }
+}
+
+@if ($include-toolbar-right-position) {
+  .tool-container.tool-right .arrow {
+    border-color: transparent $toolbar-background-color transparent transparent;
+    top: 50%;
+    left: calculate-toolbar-arrow-position($toolbar-arrow-border-width);
+    margin-top: -1 * $toolbar-arrow-border-width;
+
+    @if($include-toolbar-variations) {
+      &.primary {
+        border-color: transparent $toolbar-primary-background-color transparent transparent;
+      }
+
+      &.danger {
+        border-color: transparent $toolbar-danger-background-color transparent transparent;
+      }
+
+      &.warning {
+        border-color: transparent $toolbar-warning-background-color transparent transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+//Grid
+
+// @compass dependencies
+@import "compass/css3";
+
+//
+//@variables
+//
+
+//Grid settings
+$number-of-columns: 12 !default;
+$column-separation-factor: 0.1833 !default;
+
+//Row config
+$row-text-rendering: optimizespeed !default;
+$row-next-to-row-separation: 0.14285714rem !default;
+
+//Columns settings
+$col-padding: 0.57142857rem !default;
+$stack-column-separation: 2px !default;
+
+//Media
+$grid-max-width: 54.85714286rem !default;
+$grid-max-width-media: "(max-width: #{$grid-max-width})" !default;
+
+//Row variations
+$primary-background-color: rgba(52, 152, 219, 0.6);
+$danger-background-color: rgba(231, 76, 60, 0.6);
+$warning-background-color: rgba(241, 196, 15, 0.6);
+$success-background-color: rgba(46, 204, 113, 0.6);
+
+//
+//@mixin
+//
+@mixin grid-columns($columns: $number-of-columns) {
+  $column-width: 100 / $columns;
+
+  @for $i from 1 through $columns {
+    .col-#{$i} {
+      $current-width: ($column-width * $i) - $column-separation-factor;
+      width: percentage($current-width / 100);
+      margin-left: percentage($column-separation-factor / 100);
+    }
+  }
+}
+
+.row {
+  @extend %clearfix;
+  display: block;
+  text-rendering: $row-text-rendering;
+
+  &.primary { background: $primary-background-color; }
+  &.danger { background: $danger-background-color; }
+  &.warning { background: $warning-background-color; }
+  &.success { background: $success-background-color; }
+
+  //Columns
+  @include grid-columns;
+}
+
+//Separation between rows
+.row + .row {
+  margin-top: $row-next-to-row-separation;
+}
+
+//Borders and paddings are applied inside the div element
+//This prevents the columns to stack by a border or padding
+[class*="col-"] {
+  padding: $col-padding;
+  float: left;
+}
+
+@media #{$grid-max-width-media} {
+  .row > [class *= "col-"] {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: $stack-column-separation;
+  }
+}

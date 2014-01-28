@@ -1,0 +1,97 @@
+//Labels
+
+//
+//@variables
+//
+@import "functions";
+
+//Label general settings
+$label-padding: px-to-rems(3) px-to-rems(6) !default;
+$label-font-size: px-to-rems(11) !default;
+$label-font-weight: normal !default;
+$label-font-color: #FFF !default;
+$label-font-shadow-alpha: 0.20 !default;
+$label-font-shadow-x: 0 !default;
+$label-font-shadow-y: -1px !default;
+$label-hover-decoration: none !default;
+$label-default-background:  #95A5A6 !default;
+
+//Label variations
+$label-radius: px-to-rems(3) !default;
+$label-round: px-to-rems(1000) !default;
+
+//Label background variations
+$label-primary-background: #3498db !default;
+$label-success-background: #2ecc71 !default;
+$label-danger-background: #e74c3c !default;
+$label-warning-background: #e67e22 !default;
+
+//
+//@mixin
+// We use this mixin to build the general settings for labels
+//
+@mixin label-base {
+  display: inline-block;
+  *display: inline-block;
+  padding: $label-padding;
+  font-size: $label-font-size;
+  font-weight: $label-font-weight;
+  color: $label-font-color;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-shadow: $label-font-shadow-x $label-font-shadow-y 0 rgba(0,0,0, $label-font-shadow-alpha);
+
+  &:hover {
+    text-decoration: $label-hover-decoration;
+  }
+}
+
+//
+//@mixin
+// We use this mixin to add styling to the labels
+//
+// $background-color - Is the background for the labels. Default: $label-default-background
+
+@mixin label-style($background-color: $label-default-background) {
+  background: $background-color;
+}
+
+
+//
+//@mixin
+//
+// We use this mixin to let the user create custom buttons
+// $background-color - Is the background color for the button to create. Default: $label-default-background
+// $include-round - Wheter or not to add the round style on the custom button
+// $include-radius - Wheter or not to add the radius size style on the custom button
+// Example .custom-label { @include label($background-color: #1abc9c); }
+//
+
+@mixin label($background-color: $label-default-background, $include-round: true, $include-radius: true) {
+  @include label-base;
+  @include label-style($background-color);
+
+  @if $include-round {
+    &.round { @include border-radius($label-round); }
+  }
+
+  @if $include-radius {
+    &.radius { @include border-radius($label-radius); }
+  }
+}
+
+//Label style definition
+.label {
+  @include label-base;
+  @include label-style;
+
+  &.round { @include border-radius($label-round); }
+  &.radius { @include border-radius($label-radius); }
+
+
+  //Label styles
+  &.primary { @include label-style($label-primary-background); }
+  &.success { @include label-style($label-success-background); }
+  &.danger { @include label-style($label-danger-background); }
+  &.warning { @include label-style($label-warning-background); }
+}
