@@ -14,24 +14,27 @@
 
 //Navigation general settings
 $navigation-bar-background: #191818 !default;
-$navigation-bar-height: 45px !default;
 $navigation-margin-bottom: 10px !default;
 $navigation-bar-color: #FFF !default;
 $navigation-bar-font-weight: 300 !default;
 $navigation-font-size: px-to-rems(13) !default;
 $navigation-fixed-z-index: 1030 !default;
+$navigation-bar-border-bottom: transparent !default;
+$navigation-bar-divider-color: scale-color($navigation-bar-background, $lightness: 13%) !default;
 
 //Brand section
 $navigation-bar-brand-section-font-size: px-to-rems(18) !default;
+$navigation-bar-brand-section-font-weight: 400 !default;
 
 //Navigation links settings
 $navigation-bar-link-color: #FFF !default;
 $navigation-bar-link-hover-color: #999 !default;
 $navigation-bar-link-hover-decoration: none !default;
+$navigation-bar-hover-link-background-color: darken($navigation-bar-background, 5%) !default;
 
 //Buttons settings
-$navigation-bar-button-font-size: px-to-rems(12) !default;
-$navigation-bar-button-height: $navigation-bar-height - 10 !default;
+$navigation-bar-button-font-size: $navigation-font-size !default;
+$navigation-bar-button-height: 35px !default;
 $navigation-bar-button-margin-left: px-to-rems(8) !default;
 $navigation-bar-button-margin-right: px-to-rems(8) !default;
 $navigation-bar-menu-color: #FFF !default;
@@ -59,9 +62,10 @@ $navigation-bar-dropdown-header-color: #777 !default;
 $navigation-bar-dropdown-header-font-weight: bold !default;
 $navigation-bar-dropdown-header-font-size: px-to-rems(8) !default;
 $navigation-bar-dropdown-divider-height: px-to-rems(1) !default; 
+$navigation-bar-dropdown-anchor-height: 45px !default;
+$navigation-bar-dropdown-anchor-line-height: $navigation-bar-dropdown-anchor-height !default;
+$navigation-bar-dropdown-right-position: 0px !default;
 
-//Offscreen
-$off-screen-toggle-padding-left: px-to-rems(34) !default;
 
 //Media
 $media-collapse-width: 768px !default;
@@ -74,10 +78,12 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
   margin-bottom: $navigation-margin-bottom;
   overflow: hidden;
   font-weight: $navigation-bar-font-weight;
+  border-bottom: $navigation-bar-border-bottom;
 
   a {
     @include touch-callout;
   }
+
   &.opened {
     height: auto;
 
@@ -106,7 +112,7 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
 
         &.divider {
           height: auto;
-          border-bottom: 1px solid scale-color($navigation-bar-background, $lightness: 13%);
+          border-bottom: 1px solid $navigation-bar-divider-color;
         }
       }
     }
@@ -124,19 +130,32 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
   }
 
   .button {
+    color: #FFF;
     font-size: $navigation-bar-button-font-size;
     height: $navigation-bar-button-height;
     line-height: $navigation-bar-button-height;
     margin-left: $navigation-bar-button-margin-left;
     margin-right: $navigation-bar-button-margin-right;
+    margin-top: ($navigation-bar-height / 2) - ($navigation-bar-button-height / 2);
 
     &:hover {
       color: #FFF;
     }
   }
 
-  [class^="icon-"], [class*=" icon-"] {
+  [class^="fa"], 
+  [class*=" fa"] {
     margin-right: $navigation-bar-icon-margin-right;
+    margin-left: $navigation-bar-icon-margin-right;
+  }
+
+  ul.pull-right {
+    li.with-dropdown {
+      .dropdown { 
+        right: $navigation-bar-dropdown-right-position; 
+        left: auto;
+      }
+    }
   }
 
   ul {
@@ -158,6 +177,10 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
         }
       }
 
+      a:hover:not(.button) {
+        background: $navigation-bar-hover-link-background-color; 
+      }
+
       a {
         display: block;
         padding: 0 $navigation-bar-height / 3;
@@ -173,15 +196,12 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
 
       &.divider {
         height: $navigation-bar-height; 
-        border-left: 1px solid scale-color($navigation-bar-background, $lightness: 13%);
+        border-left: 1px solid $navigation-bar-divider-color;
       }
     }
 
     li.with-dropdown {
       position: relative;
-      & > a {
-        padding-right: $navigation-bar-height - 10;
-      } 
 
       &.opened {
         .dropdown {
@@ -204,6 +224,11 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
           background: $navigation-bar-background;
           white-space: nowrap;
 
+          a {
+            height: $navigation-bar-dropdown-anchor-height;
+            line-height: $navigation-bar-dropdown-anchor-line-height;
+          }
+
           &.dropdown-header {
             text-transform: $navigation-bar-dropdown-header-text-transform;
             padding: $navigation-bar-dropdown-header-padding;
@@ -215,7 +240,7 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
 
           &.divider {
             height: $navigation-bar-dropdown-divider-height; 
-            border-top: 1px solid scale-color($navigation-bar-background, $lightness: 13%);
+            border-top: 1px solid $navigation-bar-divider-color;
           }
         }
       }
@@ -230,11 +255,7 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
   .brand-section {
     font-size: $navigation-bar-brand-section-font-size; 
     position: relative;
-    .brand-name {
-      a {
-        display: block !important;
-      }
-    }
+    font-weight: $navigation-bar-brand-section-font-weight;
     li {
       padding: 0;
 
@@ -253,7 +274,7 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
           height: 0;
           position: absolute;
           right: 0;
-          top: 6px;
+          top: $navigation-bar-toggle-icon-top-position;
           @include box-shadow(0 10px 0 1px $navigation-bar-menu-color,
                               0 16px 0 1px $navigation-bar-menu-color,
                               0 22px 0 1px $navigation-bar-menu-color);
@@ -301,9 +322,6 @@ $navigation-bar-uncollapse-query: "#{$media-display} and (min-width: #{$media-co
       width: 100%;
       font-size: $navigation-bar-brand-section-font-size - 0.15; 
 
-      .brand-name a {
-        padding-left: $off-screen-toggle-padding-left;
-      }
       li {
 
         &.menu-toggle {

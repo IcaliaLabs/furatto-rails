@@ -3,6 +3,12 @@
  * Copyright 2014-2014 Icalia Labs
  * Licensed under MIT (https://github.com/IcaliaLabs/furatto/blob/master/LICENSE)
  */
+
+/*!
+ * Furatto v3.0.0 (http://icalialabs.github.io/furatto/)
+ * Copyright 2014-2014 Icalia Labs
+ * Licensed under MIT (https://github.com/IcaliaLabs/furatto/blob/master/LICENSE)
+ */
 window.Furatto = {
   name: 'Furatto',
   version: '1.0.0'
@@ -96,7 +102,13 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   };
   Furatto.Modal.version = "1.0.0";
   $(document).ready(function() {
-    $('body').append('<div class="modal-overlay"></div>');
+    var elementToAppend;
+    if ($('.off-screen').length > 0) {
+      elementToAppend = $('.off-screen');
+    } else {
+      elementToAppend = $('body');
+    }
+    elementToAppend.append('<div class="modal-overlay"></div>');
     return $('[data-furatto="modal"]').each(function() {
       var modal;
       modal = $(this);
@@ -467,6 +479,9 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
     });
   };
   $('.off-screen-navigation').offScreen();
+  $(document).click(function() {
+    return $('.off-screen-navigation').offScreen('resetMenu');
+  });
   return Furatto.OffScreen.version = "1.0.0";
 })(jQuery, window, document);
 
@@ -578,7 +593,10 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
       }
     });
   };
-  return Furatto.ResponsiveTables.version = "1.0.0";
+  Furatto.ResponsiveTables.version = "1.0.0";
+  return $(document).ready(function() {
+    return $('table.responsive').responsiveTables();
+  });
 })($, window, document);
 
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
@@ -593,12 +611,12 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
     delay: 3000,
     pause: false,
     loop: false,
-    enableKeys: false,
-    enableDots: false,
-    enableArrows: false,
-    prev: '<<',
-    next: '>>',
-    fluid: false,
+    enableKeys: true,
+    enableDots: true,
+    enableArrows: true,
+    prev: '«',
+    next: '»',
+    fluid: true,
     starting: false,
     completed: false,
     easing: 'swing',
@@ -852,7 +870,12 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
       }
     });
   };
-  return Furatto.Suraido.version = "1.0.0";
+  Furatto.Suraido.version = "1.0.0";
+  return $(document).ready(function() {
+    return $('[data-suraido]').each(function() {
+      return $(this).suraido();
+    });
+  });
 })($, window, document);
 
 /*
@@ -1716,3 +1739,84 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   });
 
 }(window.jQuery);
+
+/*!
+ * classie - class helper functions
+ * from bonzo https://github.com/ded/bonzo
+ * 
+ * classie.has( elem, 'my-class' ) -> true/false
+ * classie.add( elem, 'my-new-class' )
+ * classie.remove( elem, 'my-unwanted-class' )
+ * classie.toggle( elem, 'my-class' )
+ */
+
+/*jshint browser: true, strict: true, undef: true */
+/*global define: false */
+
+( function( window ) {
+
+'use strict';
+
+// class helper functions from bonzo https://github.com/ded/bonzo
+
+function classReg( className ) {
+  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+}
+
+// classList support for class management
+// altho to be fair, the api sucks because it won't accept multiple classes at once
+var hasClass, addClass, removeClass;
+
+if ( 'classList' in document.documentElement ) {
+  hasClass = function( elem, c ) {
+    return elem.classList.contains( c );
+  };
+  addClass = function( elem, c ) {
+    elem.classList.add( c );
+  };
+  removeClass = function( elem, c ) {
+    elem.classList.remove( c );
+  };
+}
+else {
+  hasClass = function( elem, c ) {
+    return classReg( c ).test( elem.className );
+  };
+  addClass = function( elem, c ) {
+    if ( !hasClass( elem, c ) ) {
+      elem.className = elem.className + ' ' + c;
+    }
+  };
+  removeClass = function( elem, c ) {
+    elem.className = elem.className.replace( classReg( c ), ' ' );
+  };
+}
+
+function toggleClass( elem, c ) {
+  var fn = hasClass( elem, c ) ? removeClass : addClass;
+  fn( elem, c );
+}
+
+var classie = {
+  // full names
+  hasClass: hasClass,
+  addClass: addClass,
+  removeClass: removeClass,
+  toggleClass: toggleClass,
+  // short names
+  has: hasClass,
+  add: addClass,
+  remove: removeClass,
+  toggle: toggleClass
+};
+
+// transport
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( classie );
+} else {
+  // browser global
+  window.classie = classie;
+}
+
+})( window );
