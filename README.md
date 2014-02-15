@@ -1,7 +1,16 @@
 # Furatto for Rails Asset Pipeline
-Furatto is a flat, fast and powerful front-end framework for rapid web development.
 
-The furatto gem integrates the Furatto CSS framework for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
+Furatto is a lightweight & friendly front-end framework got get the job done, created and maintained by [Abraham Kuri](https://twitter.com/kurenn) from [Icalia Labs](http://twitter.com/icalialabs).
+
+The furatto gem integrates the Furatto CSS framework for Rails 3.1+ Asset Pipeline.
+
+## Table of contents
+- [Installing Gem](#installing-gem)
+- [Using Rails 4?](#using-rails-4?)
+- [Contributors & Patches & Forks](#contributors-&-patches-&-forks)
+- [Furatto heroe](#furatto-heroe)
+- [Credits](#credits)
+- [License](#license)
 
 ## Installing Gem
 
@@ -35,25 +44,19 @@ $ bundle
 
 Add to your `app/assets/stylesheets/application.css`
 		
-		*= require normalize
-		*= require furatto
+	*= require normalize
+	*= require furatto
 
 Add to your `app/assets/javascripts/application.js`
 
-		//= require furatto
-		
-## Want Font Awesome support?
-
-Add to your `app/assets/stylesheets/application.css`
-		
-		*= require font-awesome
+	//= require furatto
 		
 ## Using Rails 4?
 
-The configuration for Rails 4 is pretty similar, although the `compass-rails` gem is not fully support, you have to add it with a patch.
+The configuration for Rails 4 is pretty similar.
 
 ```ruby
-gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'compass-rails', '~> 1.1.3'
 ```
 
 After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:
@@ -74,13 +77,20 @@ Install the gem using the bundle command:
 $ bundle
 ```
 
-**After doing the steps above, you just include the furatto files as shown on the Rails 3 example.**
+After running the `bundle` command, the gem now comes with an installer for easy setup.
+
+```console
+$ rails g furatto:install
+```
+
+This will add furatto to the asset pipeline automatically, and install an application layout skeleton.
 
 ## Contributors & Patches & Forks
 
 - Abraham Kuri Vargas ([@kurenn](http://twitter.com/kurenn))
 
-## Furatto author
+
+## Furatto heroe
 - Abraham Kuri Vargas ([@kurenn](http://twitter.com/kurenn))
 
 
@@ -90,9 +100,6 @@ Abraham Kuri - kurenn@icalialabs.com
 [Add Me On Twitter](http://twitter.com/kurenn "Follow me")
 
 [Add Me On Linkedin](http://www.linkedin.com/pub/abraham-kuri/26/a21/b41 "Add Me On Linkedin")
-
-[Add Me On Facebook](https://www.facebook.com/kurenn "Add Me On Facebook")
-
 
 ## Score me
 <img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
