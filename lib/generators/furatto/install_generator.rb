@@ -7,7 +7,11 @@ module Furatto
       source_root File.join(File.dirname(__FILE__), 'templates')
       argument :layout_name, :type => :string, :default => 'application', :banner => 'layout_name'
 
+      attr_reader :app_name
+
       def add_assets
+        app = ::Rails.application
+        @app_name = app.class.to_s.split("::").first
         # rails_ujs breaks, need to incorporate rails-behavior plugin for this to work seamlessly
         # gsub_file "app/assets/javascripts/application#{detect_js_format[0]}", /\/\/= require jquery\n/, ""
         insert_into_file "app/assets/javascripts/application#{detect_js_format[0]}", "#{detect_js_format[1]} require furatto\n", :after => "jquery_ujs\n"
