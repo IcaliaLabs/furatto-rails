@@ -48,9 +48,6 @@ $button-success-background: #2ecc71 !default;
 $button-danger-background: #e74c3c !default;
 $button-warning-background: #e67e22 !default;
 
-//Media queries
-$button-block-media-query-width: px-to-rems(480) !default;
-
 //
 //@mixin
 //
@@ -69,8 +66,10 @@ $button-block-media-query-width: px-to-rems(480) !default;
   outline: none;
   color: $button-font-color;
   vertical-align: middle;
-  @include single-transition(all, 0.2s, ease-in-out);
   position: relative;
+  @include single-transition(all, 0.2s, ease-in-out);
+  @include appearance(none);
+  @include border-radius(0);
 
   .fa {
     margin-right: $button-icon-separation;
@@ -110,6 +109,7 @@ $button-block-media-query-width: px-to-rems(480) !default;
 
   &.active, &:active {
     outline: 0;
+    background: darken($background-color, 5%);
   }
 
   &.alpha {
@@ -202,7 +202,7 @@ $button-block-media-query-width: px-to-rems(480) !default;
     }
   }
 
-  @media (max-width: $button-block-media-query-width) {
+  @include phone {
     & {
       display: block;
       width: 100%;
@@ -256,7 +256,7 @@ button, .button {
     margin-top: $button-vertical-separation;
   }
 
-  @media (max-width: $button-block-media-query-width) {
+  @include phone {
     & {
       display: block;
       width: 100%;
