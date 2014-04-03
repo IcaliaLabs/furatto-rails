@@ -22,6 +22,12 @@ module Furatto
       super(attribute, (text || "").html_safe, options)
     end
 
+    def password_field(attribute, options = {})
+      field attribute, options do |options|
+        super(attribute, options.merge(:autocomplete => :off))
+      end
+    end
+
     private
 
     def has_error?(attribute)
