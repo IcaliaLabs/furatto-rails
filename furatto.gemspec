@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'railties', '~> 4.0'
-  gem.add_dependency "actionpack", '~> 4.0'
-  gem.add_dependency "activemodel", '~> 4.0'
+  gem.add_dependency 'railties', '>= 3.0'
+  gem.add_dependency "actionpack", '>= 3.0'
+  gem.add_dependency "activemodel", '>= 3.0'
 end
