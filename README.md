@@ -53,13 +53,7 @@ Add to your `app/assets/javascripts/application.js`
 		
 ## Using Rails 4?
 
-The configuration for Rails 4 is pretty similar.
-
-```ruby
-gem 'compass-rails', '~> 1.1.3'
-```
-
-After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:
+You need to only include the `furatto` gem inside your `Gemfile`:
 
 ```ruby
 gem 'furatto'
