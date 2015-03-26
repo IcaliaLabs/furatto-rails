@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Furatto Rails by IcaliaLabs</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Furatto Rails</h1>
+          <h2>Furatto CSS Framework for Rails Asset Pipeline</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/IcaliaLabs/furatto-rails/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/IcaliaLabs/furatto-rails/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/IcaliaLabs/furatto-rails" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="furatto-for-rails-asset-pipeline" class="anchor" href="#furatto-for-rails-asset-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Furatto for Rails Asset Pipeline</h1>
+
+<p>Furatto is a lightweight &amp; friendly front-end framework got get the job done, created and maintained by <a href="https://twitter.com/kurenn">Abraham Kuri</a> from <a href="http://twitter.com/icalialabs">Icalia Labs</a>.</p>
+
+<p>The furatto gem integrates the Furatto CSS framework for Rails 3.1+ Asset Pipeline.</p>
+
+<h2>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of contents</h2>
+
+<ul>
+<li><a href="#installing-gem">Installing Gem</a></li>
+<li><a href="#using-rails-4?">Using Rails 4?</a></li>
+<li><a href="#contributors-&amp;-patches-&amp;-forks">Contributors &amp; Patches &amp; Forks</a></li>
+<li><a href="#furatto-heroe">Furatto heroe</a></li>
+<li><a href="#credits">Credits</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<h2>
+<a id="installing-gem" class="anchor" href="#installing-gem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Gem</h2>
+
+<p><strong>Because furatto uses <a href="http://compass-style.org/reference/compass/css3/">Compass</a>, you need to add the compass-rails gem into the assets group from your Gemfile.</strong></p>
+
+<div class="highlight highlight-ruby"><pre>group <span class="pl-c1">:assets</span> <span class="pl-k">do</span>
+    <span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>compass-rails<span class="pl-pds">'</span></span>
+<span class="pl-k">end</span></pre></div>
+
+<p>After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>furatto<span class="pl-pds">'</span></span></pre></div>
+
+<p>or you can install from the latest build:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>furatto<span class="pl-pds">'</span></span>, <span class="pl-c1">git:</span> <span class="pl-s"><span class="pl-pds">'</span>git@github.com:IcaliaLabs/furatto-rails.git<span class="pl-pds">'</span></span></pre></div>
+
+<p>Install the gem using the bundle command:</p>
+
+<div class="highlight highlight-console"><pre>$ <span class="pl-s1">bundle</span></pre></div>
+
+<h2>
+<a id="add-furatto-to-the-asset-pipeline" class="anchor" href="#add-furatto-to-the-asset-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add furatto to the asset pipeline</h2>
+
+<p>Add to your <code>app/assets/stylesheets/application.css</code></p>
+
+<pre><code>*= require normalize
+*= require furatto
+</code></pre>
+
+<p>Add to your <code>app/assets/javascripts/application.js</code></p>
+
+<pre><code>//= require furatto
+</code></pre>
+
+<h2>
+<a id="using-rails-4" class="anchor" href="#using-rails-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Rails 4?</h2>
+
+<p>You need to only include the <code>furatto</code> gem inside your <code>Gemfile</code>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>furatto<span class="pl-pds">'</span></span></pre></div>
+
+<p>or you can install from the latest build:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>furatto<span class="pl-pds">'</span></span>, <span class="pl-c1">git:</span> <span class="pl-s"><span class="pl-pds">'</span>git@github.com:IcaliaLabs/furatto-rails.git<span class="pl-pds">'</span></span></pre></div>
+
+<p>Install the gem using the bundle command:</p>
+
+<div class="highlight highlight-console"><pre>$ <span class="pl-s1">bundle</span></pre></div>
+
+<p>After running the <code>bundle</code> command, the gem now comes with an installer for easy setup.</p>
+
+<div class="highlight highlight-console"><pre>$ <span class="pl-s1">rails g furatto:install</span></pre></div>
+
+<p>This will add furatto to the asset pipeline automatically, and install an application layout skeleton.</p>
+
+<h2>
+<a id="contributors--patches--forks" class="anchor" href="#contributors--patches--forks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors &amp; Patches &amp; Forks</h2>
+
+<ul>
+<li>Abraham Kuri Vargas (<a href="http://twitter.com/kurenn">@kurenn</a>)</li>
+</ul>
+
+<h2>
+<a id="furatto-heroe" class="anchor" href="#furatto-heroe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Furatto heroe</h2>
+
+<ul>
+<li>Abraham Kuri Vargas (<a href="http://twitter.com/kurenn">@kurenn</a>)</li>
+</ul>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Abraham Kuri - <a href="mailto:kurenn@icalialabs.com">kurenn@icalialabs.com</a></p>
+
+<p><a href="http://twitter.com/kurenn" title="Follow me">Add Me On Twitter</a></p>
+
+<p><a href="http://www.linkedin.com/pub/abraham-kuri/26/a21/b41" title="Add Me On Linkedin">Add Me On Linkedin</a></p>
+
+<h2>
+<a id="score-me" class="anchor" href="#score-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Score me</h2>
+
+<p><img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></p>
+
+<p>You can +K my influence in Ruby on Rails on <a href="https://github.com/klout" class="user-mention">@klout</a></p>
+
+<p><a href="http://klout.com/#/kurenn">http://klout.com/#/kurenn</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2011 Abraham Kuri Vargas</p>
+
+<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/gpl.html">http://www.gnu.org/licenses/gpl.html</a>.</p>
+        </section>
+
+        <footer>
+          Furatto Rails is maintained by <a href="https://github.com/IcaliaLabs">IcaliaLabs</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
