@@ -2,56 +2,17 @@
 
 Furatto is a lightweight & friendly front-end framework got get the job done, created and maintained by [Abraham Kuri](https://twitter.com/kurenn) from [Icalia Labs](http://twitter.com/icalialabs).
 
-The furatto gem integrates the Furatto CSS framework for Rails 3.1+ Asset Pipeline.
+The furatto gem integrates the Furatto CSS framework for Rails 4+ Asset Pipeline.
 
 ## Table of contents
 - [Installing Gem](#installing-gem)
-- [Using Rails 4?](#using-rails-4?)
+- [Issues](#issues)
 - [Contributors & Patches & Forks](#contributors-&-patches-&-forks)
 - [Furatto heroe](#furatto-heroe)
 - [Credits](#credits)
 - [License](#license)
 
 ## Installing Gem
-
-**Because furatto uses [Compass](http://compass-style.org/reference/compass/css3/), you need to add the compass-rails gem into the assets group from your Gemfile.**
-
-```ruby
-group :assets do
-	gem 'compass-rails'
-end
-```
-
-After including the compass-rails gem, you need to add the furatto gem to your application's Gemfile:
-
-```ruby
-gem 'furatto'
-```
-
-or you can install from the latest build:
-
-```ruby
-gem 'furatto', git: 'git@github.com:IcaliaLabs/furatto-rails.git'
-```
-
-Install the gem using the bundle command:
-
-```console
-$ bundle
-```
-
-## Add furatto to the asset pipeline
-
-Add to your `app/assets/stylesheets/application.css`
-		
-	*= require normalize
-	*= require furatto
-
-Add to your `app/assets/javascripts/application.js`
-
-	//= require furatto
-		
-## Using Rails 4?
 
 You need to only include the `furatto` gem inside your `Gemfile`:
 
@@ -78,6 +39,31 @@ $ rails g furatto:install
 ```
 
 This will add furatto to the asset pipeline automatically, and install an application layout skeleton.
+
+Now you can just run the rails server and then everything should be nice and clean.
+
+## Issues
+
+If for some reason you find troubles installing the gem due to `sass` version like:
+
+```ruby
+Bundler could not find compatible versions for gem "sass-rails":
+  In snapshot (Gemfile.lock):
+    sass-rails (= 5.0.3)
+
+  In Gemfile:
+    furatto (>= 0) ruby depends on
+      compass-rails (>= 2.0.4, ~> 2.0) ruby depends on
+        sass-rails (<= 5.0.1) ruby
+
+    sass-rails (~> 5.0) ruby
+
+Running `bundle update` will rebuild your snapshot from scratch, using only
+the gems in your Gemfile, which may resolve the conflict.
+```
+
+Just remove the `Gemfile.lock` from the project or update the `sass-rails` gem.
+
 
 ## Contributors & Patches & Forks
 

@@ -4,7 +4,7 @@ module Furatto
   class FormBuilder < ActionView::Helpers::FormBuilder
     include ActionView::Helpers::TagHelper
 
-    %w(file_field email_field text_field text_area telephone_field phone_field 
+    %w(file_field email_field text_field text_area telephone_field phone_field
        url_field number_field date_field datetime_field datetime_local_field
        month_field week_field time_field range_field search_field color_field ).each do |method_name|
       define_method(method_name) do |*args|

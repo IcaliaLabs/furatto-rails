@@ -42,7 +42,7 @@ module Furatto
 
       private
 
-      def layout_file_name 
+      def layout_file_name
         layout_name.underscore.downcase
       end
     end
