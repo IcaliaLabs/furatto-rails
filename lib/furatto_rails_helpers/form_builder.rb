@@ -17,14 +17,14 @@ module Furatto
     end
 
     def label(attribute, text = nil, options = {})
-      options[:class] ||= ""
-      options[:class] += " error" if has_error?(attribute)
-      super(attribute, (text || "").html_safe, options)
+      options[:class] ||= ''
+      options[:class] += ' error' if has_error?(attribute)
+      super(attribute, (text || '').html_safe, options)
     end
 
     def password_field(attribute, options = {})
       field attribute, options do |options|
-        super(attribute, options.merge(:autocomplete => :off))
+        super(attribute, options.merge(autocomplete: :off))
       end
     end
 
@@ -38,19 +38,19 @@ module Furatto
       if has_error?(attribute)
         error_messages = object.errors[attribute].join(', ')
         error_messages = error_messages.html_safe if options[:html_safe_errors]
-        content_tag(:span, error_messages, :class => "error help-hint")
+        content_tag(:span, error_messages, class: 'error help-hint')
       end
     end
 
     def error_and_hint(attribute, options = {})
-      html = ""
-      html += error_for(attribute, options) || ""
+      html = ''
+      html += error_for(attribute, options) || ''
       html.html_safe
     end
 
     def field(attribute, options, &block)
       html = ''.html_safe
-      options[:class] = " error" if has_error?(attribute)
+      options[:class] += ' error' if has_error?(attribute)
       html += yield(options)
       html += error_and_hint(attribute, options)
     end
