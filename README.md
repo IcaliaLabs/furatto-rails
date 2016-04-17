@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/repos/5713cf6fdf2b6b006800145e/badges/6058dc3b90a4791da621/gpa.svg)](https://codeclimate.com/repos/5713cf6fdf2b6b006800145e/feed)
+[![Issue Count](https://codeclimate.com/repos/5713cf6fdf2b6b006800145e/badges/6058dc3b90a4791da621/issue_count.svg)](https://codeclimate.com/repos/5713cf6fdf2b6b006800145e/feed)
+
 # Furatto for Rails Asset Pipeline
 
 Furatto is a lightweight & friendly front-end framework got get the job done, created and maintained by [Abraham Kuri](https://twitter.com/kurenn) from [Icalia Labs](http://twitter.com/icalialabs).
