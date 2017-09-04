@@ -16,8 +16,10 @@ module ActionView
         fields_for_without_furatto(record_name, record_object, options, &block)
       end
 
-      alias_method_chain :form_for, :furatto
-      alias_method_chain :fields_for, :furatto
+      alias_method :form_for_without_furatto, :form_for
+      alias_method :form_for, :form_for_with_furatto
+      alias_method :fields_for_without_furatto, :fields_for
+      alias_method :fields_for, :fields_for_with_furatto 
     end
   end
 end
